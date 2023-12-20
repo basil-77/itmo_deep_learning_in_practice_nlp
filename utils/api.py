@@ -10,10 +10,10 @@ import json
 import time
 import streamlit as st
 
-def get_page(page = 0):
+def get_page(vacancy, page = 0):
         
         params = {
-                'text':'NAME:Аналитик',
+                'text':f'NAME:{vacancy}',
                 'page':page,
                 'per_page':100
             }
@@ -26,13 +26,13 @@ def get_page(page = 0):
 
 
 
-def get_json():
+def get_json(vacancy):
     
     js_list = []
     
     for page in range(0, 20):
         
-        js_obj = json.loads(get_page(page))
+        js_obj = json.loads(get_page(vacancy, page))
         
         js_list.extend(js_obj['items'])
     
