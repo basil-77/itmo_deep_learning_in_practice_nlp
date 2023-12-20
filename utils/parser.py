@@ -38,12 +38,12 @@ def extract_resume_details(pdf_file):
     else:
         search = None
     
-    expirience = r'Опыт работы((?:(?!Ключевые навыки|Дополнительная информация|Образование).)+)'
-    expirience_match = re.search(expirience, text, re.DOTALL | re.IGNORECASE)
-    if expirience_match:
-        expirience = expirience_match.group(1).strip()
+    experience = r'Опыт работы((?:(?!Ключевые навыки|Дополнительная информация|Образование).)+)'
+    experience_match = re.search(experience, text, re.DOTALL | re.IGNORECASE)
+    if experience_match:
+        experience = experience_match.group(1).strip()
     else:
-        expirience = None
+        experience = None
         
     education = r'Образование((?:(?!Ключевые навыки|Навыки).)+)'
     education_match = re.search(education, text, re.DOTALL | re.IGNORECASE)
@@ -64,7 +64,7 @@ def extract_resume_details(pdf_file):
         #"text":text
         "role": role,
         "search": search,
-        "expirience": expirience,
+        "experience": experience,
         "education": education,
         "skills": skills
     }

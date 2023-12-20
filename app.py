@@ -7,9 +7,11 @@ Created on Wed Dec 20 17:23:55 2023
 
 import streamlit as st
 import os
+import pandas as pd
 from utils import api
 from utils import parser
-import pandas as pd
+from utils import summarize
+
 
 
 #TestModel = SignDetection(f"{os.getcwd()}\\utils_model\\best.pt", [], [],\
@@ -30,15 +32,9 @@ def main():
 
     try:
         with st.sidebar:
-            
-            
 
             st.title("Загрузить файл")
-            
-
-            
-
-            
+ 
             download_pdf = st.sidebar.file_uploader(
                 label="Загрузка резюме (pdf)", type="pdf", accept_multiple_files=False
             )
@@ -55,9 +51,12 @@ def main():
         if start:
             file_pdf = os.path.join(f'{RESUME_PATH}', download_pdf.name)
             parsed_pdf = parser.extract_resume_details(file_pdf)
-            st.write(parsed_pdf)
-            #data = api.get_json()
-            #st.dataframe(data)
+            #st.write(parsed_pdf)
+            res = summarize.summarize_res(parsed_pdf['experience'][:512]+parsed_pdf['skills'])
+            st.write(res)
+            
+            data = api.get_json(res)
+            st.dataframe(data)
 
 if __name__ == "__main__":
     main()
