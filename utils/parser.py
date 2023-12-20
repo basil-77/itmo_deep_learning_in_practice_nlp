@@ -20,25 +20,15 @@ def extract_text_from_pdf(pdf_path):
 
     return text
 
-# Define the function to extract key details from a PDF resume
+
 def extract_resume_details(pdf_file):
-    """Extracts key details from a PDF resume.
+   
 
-    Args:
-        pdf_file: The path to the PDF resume file.
-
-    Returns:
-        A dictionary containing the extracted key details, including:
-            category: The job role of the candidate.
-            skills: A list of the candidate's skills.
-            education: A list of the candidate's educational qualifications.
-    """
-
-    # Extract the text from the PDF file
+    
     with open(pdf_file, "rb") as f:
         text = extract_text_from_pdf(pdf_file)
 
-    # Parse the text to extract the key details
+    
     role = text.split("\n")[0]
     
     search = r'Желаемая должность и зарплата((?:(?!Опыт работы|Ключевые навыки|Дополнительная информация|Образование).)+)'
@@ -69,7 +59,7 @@ def extract_resume_details(pdf_file):
     else:
         skills = None
     
-    # Return the extracted key details
+    
     return {
         #"text":text
         "role": role,
