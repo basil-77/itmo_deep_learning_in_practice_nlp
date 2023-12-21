@@ -21,7 +21,7 @@ rut5-base absum, ...
 ## Inference 
 
 [Модель](https://huggingface.co/basil-77/rut5-base-absum-vacancieshh) лежит на Hugging Face 
-
+__________ 
 ## MVP
 
 Продукт представляет собой веб-сервис.
