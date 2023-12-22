@@ -24,8 +24,10 @@ def compare_vac_cos(vac_name, vac_link, cos):
         names[vac_name[i]] = cos[i]
         links[vac_link[i]] = cos[i]
         
-    sort_vac_names = dict(sorted(names.items(), key=lambda kv: kv[1], reverse = True))
-    sort_vac_links = dict(sorted(links.items(), key=lambda kv: kv[1], reverse = True))
+    sort_vac_names = dict(sorted(names.items(), \
+                                 key=lambda kv: kv[1], reverse = True))
+    sort_vac_links = dict(sorted(links.items(), \
+                                 key=lambda kv: kv[1], reverse = True))
     
     return sort_vac_names, sort_vac_links
     

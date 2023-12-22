@@ -8,7 +8,6 @@ Created on Wed Dec 20 17:23:55 2023
 import streamlit as st
 import os
 import pandas as pd
-import re
 from utils import api
 from utils import parser
 from utils import summarize
@@ -25,7 +24,7 @@ def main():
         initial_sidebar_state="expanded",
     )
 
-    column1, column2 = st.columns([7,3])
+    column1, column2 = st.columns([9,1])
 
     try:
         with st.sidebar:
@@ -72,15 +71,27 @@ def main():
                     
                 vacancy_len = len(vacancy)
                 
-                result = {}
-                for i in range(vacancy_len):
-                    result[vacancy[i]] = vac_links[i]
                 
+                
+                table = {
+                        'Название вакансии':vacancy,
+                        'Ссылка':vac_links[:vacancy_len],
+                        'Score':list(map(lambda x: "{:.2%}".format(x),\
+                                         names.values()))
+                    }
+                
+                result = pd.DataFrame(table)
+                
+                
+
                 del names
                 del links
                 
                 st.write('Вакансии с hh.ru:')
-                st.table(result)
+                st.dataframe(result, \
+                             column_config=
+                             {"Ссылка":st.column_config.LinkColumn()}
+                             )
                 
     except Exception as e:
         st.sidebar.error('Файл не выбран')
