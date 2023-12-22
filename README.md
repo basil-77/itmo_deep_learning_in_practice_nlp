@@ -20,19 +20,28 @@
 
 <p align="center"><img src="image/2.jpg" width=30% alt="Main page"></p>
 
-
 ## MVP
 
 Продукт представляет собой веб-сервис.
 
-Веб-приложение позволяет загрузить своё резюме в формате PDF и получить на выходе подборку вакансий с hh.ru
+Веб-приложение позволяет загрузить своё резюме в формате PDF и получить на выходе подборку вакансий с hh.ru с численным значением "score" - наиболее подходящая вакансия под загруженное резюме.
 
 Запись работы приложения:
 
-[<p align="center"><img src="https://img.youtube.com/vi/nOsGKpO9t-I/maxresdefault.jpg" width="90%"></p>](https://youtu.be/nOsGKpO9t-I)
-
+[<p align="center"><img src="https://img.youtube.com/vi/u-sN-B2MxCc/hqdefault.jpg" width=90%
+/>](https://www.youtube.com/watch?v=u-sN-B2MxCc)
 
 - Веб-приложение: streamlit
 - Модель: rut5-base absum
 
+## Как запустить веб-сервис
 
+### Requirements >= 3.10 python version <=3.11
+```bash
+pip install -r requirements.txt
+```
+
+### Запуск из папки проекта
+```bash
+streamlit run app.py
+```
