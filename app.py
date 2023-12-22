@@ -8,14 +8,11 @@ Created on Wed Dec 20 17:23:55 2023
 import streamlit as st
 import os
 import pandas as pd
+import re
 from utils import api
 from utils import parser
 from utils import summarize
-
-
-
-#TestModel = SignDetection(f"{os.getcwd()}\\utils_model\\best.pt", [], [],\
-                          #f"{os.getcwd()}\\pngs\\drawable")
+from utils import cosine
 
 RESUME_PATH = 'resumes'
 
@@ -28,7 +25,7 @@ def main():
         initial_sidebar_state="expanded",
     )
 
-    column1, column2 = st.columns([5, 5])
+    column1, column2 = st.columns([7,3])
 
     try:
         with st.sidebar:
@@ -43,20 +40,50 @@ def main():
             ) as f:
                 f.write(download_pdf.getbuffer())
                 
-    except Exception as e:
-        st.sidebar.error("Файл не выбран")
     
-    with column1:
-        start = st.button('start')
-        if start:
-            file_pdf = os.path.join(f'{RESUME_PATH}', download_pdf.name)
-            parsed_pdf = parser.extract_resume_details(file_pdf)
-            #st.write(parsed_pdf)
-            res = summarize.summarize_res(parsed_pdf['experience'][:512]+parsed_pdf['skills'])
-            st.write(res)
-            
-            data = api.get_json(res)
-            st.dataframe(data)
+        with column1:
+            start = st.button('start')
+            if start:
+                file_pdf = os.path.join(f'{RESUME_PATH}', download_pdf.name)
+                parsed_pdf = parser.extract_resume_details(file_pdf)
+                #st.write(parsed_pdf)
+                resume_compare_info = parsed_pdf['experience'] \
+                                                [:512]+parsed_pdf['skills']
+                res = summarize.summarize_res(resume_compare_info)
+                
+                
+                st.write('Подходящая должность: ' + res)
+                
+                vac_info = api.get_req_from_json(res)
+                
+                cos = []
+                
+                for req in vac_info['reqs']:
+                    cos.append(cosine.vectorize([resume_compare_info, req]))
+                names, links = cosine.compare_vac_cos(vac_info['names'], \
+                                               vac_info['link'],cos)
+                vacancy = []
+                for key, value in names.items():
+                    vacancy.append(key)
+                    
+                vac_links = []
+                for key, value in links.items():
+                    vac_links.append(key)
+                    
+                vacancy_len = len(vacancy)
+                
+                result = {}
+                for i in range(vacancy_len):
+                    result[vacancy[i]] = vac_links[i]
+                
+                del names
+                del links
+                
+                st.write('Вакансии с hh.ru:')
+                st.table(result)
+                
+    except Exception as e:
+        st.sidebar.error('Файл не выбран')
 
 if __name__ == "__main__":
     main()
