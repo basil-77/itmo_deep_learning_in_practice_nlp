@@ -8,17 +8,32 @@
 
 ## Описание используемых данных
 
-За основу был взят [датасет вакансий](https://drive.google.com/file/d/1ikA_Ht45fXD2w5dWZ9sGTSRl-UNeCVub/view) с "hh.ru". Датасет представляет из себя таблицу:
+За основу был взят [датасет вакансий](https://disk.yandex.ru/d/1bt0KXaLjlo8VA) с "hh.ru". Очищенный от лишних столбцов, датасет представляет из себя таблицу:
 
 <p align="center"><img src="image/1.jpg" width=95% alt="Main page"></p>
 
-Подробное EDA данного датасета с одноименным названием находится в отдельной ветке репозитория.
+То есть столбец с названием вакансии и столбец с ее описанием.
 
 ## Inference 
 
-[Модель](https://huggingface.co/basil-77/rut5-base-absum-vacancieshh) находится на Hugging Face, вся обработка происходит там. QR код:
+Обученная на описанном выше датасете модель загружена в репозиторий Hugging Face и доступна по [ссылке](https://huggingface.co/basil-77/rut5-base-absum-vacancieshh). Либо по QR-коду:
 
 <p align="center"><img src="image/2.jpg" width=30% alt="Main page"></p>
+
+ Обращение к модели производится путем вызова стандартных методов пакета transformers и предварительного скачивания модели/весов не требует:
+
+ ```
+import torch  
+from transformers import T5ForConditionalGeneration, T5Tokenizer
+```
+
+```
+MODEL_NAME = 'basil-77/rut5-base-absum-hh'
+model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
+tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
+model.eval();
+ ```
+
 
 ## MVP
 
