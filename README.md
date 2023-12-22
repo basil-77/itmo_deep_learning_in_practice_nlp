@@ -24,12 +24,11 @@
 
 Продукт представляет собой веб-сервис.
 
-Веб-приложение позволяет загрузить своё резюме в формате PDF и получить на выходе подборку вакансий с hh.ru с численным значением "score" - наиболее подходящая вакансия под загруженное резюме.
+Веб-приложение позволяет загрузить своё резюме в формате PDF и получить на выходе подборку вакансий с hh.ru с численным значением "score" - на сколько подходит вакансия под загруженное резюме.
 
 Запись работы приложения:
 
-[<p align="center"><img src="https://img.youtube.com/vi/u-sN-B2MxCc/hqdefault.jpg" width=90%
-/>](https://www.youtube.com/watch?v=u-sN-B2MxCc)
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://www.youtube.com/watch?v=u-sN-B2MxCc)
 
 - Веб-приложение: streamlit
 - Модель: rut5-base absum
