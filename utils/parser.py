@@ -8,6 +8,12 @@ Created on Wed Dec 20 17:33:20 2023
 import PyPDF2 
 import re
 
+
+def rem_tags(txt):
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '', txt)
+ 
+
 def extract_text_from_pdf(pdf_path):
     text = ""
     with open(pdf_path, 'rb') as pdf_file:
@@ -19,7 +25,6 @@ def extract_text_from_pdf(pdf_path):
             text += page.extract_text()
 
     return text
-
 
 def extract_resume_details(pdf_file):
    

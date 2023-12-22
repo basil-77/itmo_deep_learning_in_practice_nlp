@@ -8,7 +8,7 @@ import pandas as pd
 import requests
 import json
 import time
-import streamlit as st
+from utils import parser
 
 def get_page(vacancy, page = 0):
         
@@ -26,7 +26,7 @@ def get_page(vacancy, page = 0):
 
 
 
-def get_json(vacancy):
+def get_req_from_json(vacancy):
     
     js_list = []
     
@@ -42,6 +42,27 @@ def get_json(vacancy):
         time.sleep(0.25)
         
     df = pd.DataFrame(js_obj)
-    return df
+    items = df['items']
+    items_len = len(items)
+    
+    req = []
+    for i in range(items_len):
+        req.append(parser.rem_tags(items[i]['snippet']['requirement'] + ' '+ \
+                          items[i]['snippet']['responsibility']))
+    
+    link = []
+    for i in range(items_len):
+        link.append(parser.rem_tags(items[i]['alternate_url']))
+    
+    names = []
+    for i in range(items_len):
+        names.append(parser.rem_tags(items[i]['name']))
+                     
+          
+    return {
+            'reqs':req,
+             'link':link,
+             'names':names
+             }
     
     
