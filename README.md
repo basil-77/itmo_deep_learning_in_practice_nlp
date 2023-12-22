@@ -14,19 +14,22 @@
 
 Подробное EDA данного датасета с одноименным названием находится в отдельной ветке репозитория.
 
-## Эксперименты
-
-rut5-base absum, ...
-
 ## Inference 
 
-[Модель](https://huggingface.co/basil-77/rut5-base-absum-vacancieshh) лежит на Hugging Face 
-__________ 
+[Модель](https://huggingface.co/basil-77/rut5-base-absum-vacancieshh) находится на Hugging Face, вся обработка происходит там. QR код:
+
+<p align="center"><img src="image/2.jpg" width=30% alt="Main page"></p>
+
+
 ## MVP
 
 Продукт представляет собой веб-сервис.
 
-Веб-приложение позволяет загрузить своё резюме в формате PDF и получить на выходе подборку вакансий.
+Веб-приложение позволяет загрузить своё резюме в формате PDF и получить на выходе подборку вакансий с hh.ru
+
+Запись работы приложения:
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=nOsGKpO9t-I)
 
 - Веб-приложение: streamlit
 - Модель: rut5-base absum
