@@ -29,7 +29,8 @@
 
 Запись работы приложения:
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=nOsGKpO9t-I)
+[<p align="center"><img src="https://img.youtube.com/vi/nOsGKpO9t-I/maxresdefault.jpg" width="90%"></p>](https://youtu.be/nOsGKpO9t-I)
+
 
 - Веб-приложение: streamlit
 - Модель: rut5-base absum
